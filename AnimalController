@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class AnimalController extends Controller
+{
+    private $animals = [
+        ['name' => 'Kucing'],
+        ['name' => 'Ayam'],
+        ['name' => 'Ikan'],
+    ];
+    // Mengambil semua data hewan
+    public function index()
+    {
+        $result = [];
+        foreach ($this->animals as $index => $animal) {
+            $result[] = [
+                'index' => $index,
+                'name' => $animal['name'],
+            ];
+        }
+
+        return response()->json($result);
+    }
+
+    // Menambahkan hewan baru
+    public function store(Request $request)
+    {
+        return response()->json([
+            'message' => 'Hewan baru berhasil ditambahkan'
+        ]);
+    }
+
+    // Memperbarui data hewan berdasarkan id
+    public function update(Request $request, $id)
+    {
+        return response()->json([
+            'message' => "Data hewan dengan id $id berhasil diperbarui"
+        ]);
+    }
+
+    // Menghapus data hewan berdasarkan id
+    public function destroy($id)
+    {
+        return response()->json([
+            'message' => "Data hewan dengan id $id berhasil dihapus"
+        ]);
+    }
+}
